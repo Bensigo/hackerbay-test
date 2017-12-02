@@ -20,17 +20,11 @@ var _config = require('../config');
 
 var _config2 = _interopRequireDefault(_config);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 var router = _express2.default.Router();
-
-router.get('/', function (req, res) {
-  res.status = 200;
-  return res.json({
-    message: 'welcome to HackerBay thumbnails generator to access the API - api/v1/login',
-    status: res.status
-  });
-});
 
 router.use('/auth', _auth2.default);
 
@@ -75,6 +69,13 @@ router.use(function (req, res, next) {
 router.get('/secret', function (req, res) {
   res.json({
     message: 'this is a secret'
+  });
+});
+router.get('/', function (req, res) {
+  res.status = 200;
+  return res.json({
+    message: 'welcome to HackerBay thumbnails generator to access the API - api/v1/login',
+    status: res.status
   });
 });
 

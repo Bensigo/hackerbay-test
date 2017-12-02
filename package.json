@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm run build && mocha ./dist/test/*.js",
     "lint": "./node_modules/.bin/eslint **/*.js",
-    "dev": " npm run build &&  ./node_modules/nodemon/bin/nodemon.js  ./dist/src/server.js ",
-    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules  --exec 'npm run lint' ",
+    "dev": "./node_modules/nodemon/bin/nodemon.js ./node_modules/.bin/babel-node ./src/server --preset es2015 ",
+    "build": " rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules  --exec 'npm run lint' ",
     "start": "npm run build && node ./dist/src/server.js "
   },
   "keywords": [],
@@ -17,6 +17,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "jimp": "^0.2.28",
     "jsonwebtoken": "^8.0.1",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
