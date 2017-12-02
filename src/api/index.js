@@ -1,8 +1,10 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
+import jimp from 'jimp'
 
 import auth from './auth'
 import config from '../config'
+import downloadImage from '../utils/downloadImage'
 
 const router = express.Router()
 
@@ -11,6 +13,14 @@ router.get('/', (req, res) => {
   return res.json({
     message: 'welcome to HackerBay thumbnails generator to access the API - api/v1/login',
     status: res.status
+  })
+})
+router.get('/download', (req, res) => {
+  downloadImage('https://www.google.com/images/srpr/logo3w.png', './download/google.png', () => {
+    console.log('done')
+    res.json({
+      message: 'done'
+    })
   })
 })
 
@@ -47,12 +57,32 @@ router.use((req, res, next) => {
 
 // TODO: route for json-patch
 
-// TODO: route for thumbnails generator
-/**
- *  TODO:
- *  1. read the file(image) from the request
- *  2. manipulate the file and turn it to a thumbnail
- *  3. return the thumbnail as response
- */
-
+// TODO: route for thumbnails generator for only auth user
+router.post('/thumbnail', async (req, res, next) => {
+  const {uri, name} = req.body
+  await downloadImage(uri, `./downloads/${name}.png`, async () => {
+    console.log('done downloading')
+    console.log(` finding file ./downloads/${name}`)
+    await jimp.read(`./downloads/${name}.png`, (err, image) => {
+      if (err) {
+        console.log(err)
+        res.json({
+          success: false,
+          message: 'failed to create thumbnail'
+        })
+      }
+      console.log('start resizing image')
+      // convert image size to 50 * 50
+      image.resize(50, 50)
+        .quality(70)
+        .grayscale()
+        .write(`./thumbnails/${name}.png`)
+      console.log('resizing image done')
+      res.json({
+        success: true,
+        message: 'thumbnail created located in ./thumbnail'
+      })
+    })
+  })
+})
 export default router
