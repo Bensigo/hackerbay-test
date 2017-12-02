@@ -10,12 +10,15 @@ A step by step series of examples that tell you have to get a development env ru
     # run the command
     npm install 
 ```
+#### build 
+compile es6 to es5 
+``` npm run build ```
 #### starting development server 
 To start a development server .</br>
 ```
  npm run dev
  # then go to the link below
- http://localhost:8000/api
+ http://localhost:8080/api
  ```
 #### starting production server
 To start server on production.</br>
