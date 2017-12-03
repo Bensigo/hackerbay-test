@@ -1,6 +1,7 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import jimp from 'jimp'
+import jsonPatch from 'jsonpatch'
 
 import auth from './auth'
 import config from '../config'
@@ -56,6 +57,14 @@ router.use((req, res, next) => {
 })
 
 // TODO: route for json-patch
+router.post('/patch', (req, res) => {
+  const {json, patch} = req.body
+  // replace the json with the patch
+  const replace = jsonPatch.apply_patch(json, patch)
+  res.json({
+    data: replace
+  })
+})
 
 // TODO: route for thumbnails generator for only auth user
 router.post('/thumbnail', async (req, res, next) => {
