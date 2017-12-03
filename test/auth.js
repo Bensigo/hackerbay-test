@@ -4,7 +4,7 @@ import app from '../src/server'
 import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)
-chai.should()
+const expect = chai.expect
 
 describe('Authentication /login', () => {
   it('try to auth the a user ', (done) => {
@@ -16,9 +16,9 @@ describe('Authentication /login', () => {
       .post('api/v1/auth/login')
       .send(user)
       .end((res) => {
-        res.body.should.have.status(200)
-        res.body.should.have.property('token')
-        res.body.should.have.property('activeUser').eql({username: 'test', password: '123test'})
+        expect(res).to.have.status(200)
+        expect(res).to.have.property('token')
+        expect(res).to.have.property('activeUser').eql({username: 'test', password: '123test'})
       })
     done()
   })
@@ -30,8 +30,8 @@ describe('Authentication /login', () => {
       .post('api/v1/auth/login')
       .send(user)
       .end((res) => {
-        res.body.should.have.status(200)
-        res.body.should.have.property('data').eql({message: 'username and password require'})
+        expect(res).to.have.status(200)
+        expect(res).to.have.property('data').eql({message: 'username and password require'})
       })
     done()
   })

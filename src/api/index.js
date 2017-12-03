@@ -16,14 +16,6 @@ router.get('/', (req, res) => {
     status: res.status
   })
 })
-router.get('/download', (req, res) => {
-  downloadImage('https://www.google.com/images/srpr/logo3w.png', './download/google.png', () => {
-    console.log('done')
-    res.json({
-      message: 'done'
-    })
-  })
-})
 
 router.use('/auth', auth)
 
@@ -56,7 +48,6 @@ router.use((req, res, next) => {
   }
 })
 
-// TODO: route for json-patch
 router.post('/patch', (req, res) => {
   const {json, patch} = req.body
   // replace the json with the patch
@@ -84,7 +75,6 @@ router.post('/thumbnail', async (req, res, next) => {
       // convert image size to 50 * 50
       image.resize(50, 50)
         .quality(70)
-        .grayscale()
         .write(`./thumbnails/${name}.png`)
       console.log('resizing image done')
       res.json({

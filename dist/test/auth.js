@@ -17,7 +17,7 @@ var _chaiHttp2 = _interopRequireDefault(_chaiHttp);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _chai2.default.use(_chaiHttp2.default);
-_chai2.default.should();
+var expect = _chai2.default.expect;
 
 (0, _mocha.describe)('Authentication /login', function () {
   (0, _mocha.it)('try to auth the a user ', function (done) {
@@ -26,9 +26,9 @@ _chai2.default.should();
       password: '123test'
     };
     _chai2.default.request(_server2.default).post('api/v1/auth/login').send(user).end(function (res) {
-      res.body.should.have.status(200);
-      res.body.should.have.property('token');
-      res.body.should.have.property('activeUser').eql({ username: 'test', password: '123test' });
+      expect(res).to.have.status(200);
+      expect(res).to.have.property('token');
+      expect(res).to.have.property('activeUser').eql({ username: 'test', password: '123test' });
     });
     done();
   });
@@ -37,8 +37,8 @@ _chai2.default.should();
       username: 'test'
     };
     _chai2.default.request(_server2.default).post('api/v1/auth/login').send(user).end(function (res) {
-      res.body.should.have.status(200);
-      res.body.should.have.property('data').eql({ message: 'username and password require' });
+      expect(res).to.have.status(200);
+      expect(res).to.have.property('data').eql({ message: 'username and password require' });
     });
     done();
   });
