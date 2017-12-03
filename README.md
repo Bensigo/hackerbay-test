@@ -46,12 +46,14 @@ using JavaScript standard of eslint </br>
   <li> http://loacalhost/api/v1/ --- base route</li>
   <li>
      http://loacalhost/api/v1/auth/login --- auth route (use mock data) with return a token </br>
+
      ```
-     field 
-     ------
-     username : String
-     password: string
+        field 
+        ------
+         username : String
+         password: string
      ```
+
   </li>
   <li>
       http://loacalhost/api/v1/patch ----  secured route that require a token(jwt). Take a json object and return a patch with json-patch</br>
@@ -62,17 +64,21 @@ using JavaScript standard of eslint </br>
         -------
         json : object
         patch: [object]
+
       ```
+
   </li>
   <li>
     http://loacalhost/api/v1/thumbnail ----- secured route that an img uri and name and make a thumbnail</br>
     token can be added as query, x-access-token, body </br>
+
     ```
        field
        ------
        name: String
        uri:  String
     ```
+
   </li>
 </ul>
 
