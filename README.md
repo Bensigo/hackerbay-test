@@ -43,9 +43,9 @@ using JavaScript standard of eslint </br>
 
 #### API route 
 <ul>
-  <li> http://loacalhost/api/v1/ --- base route</li>
+  <li> http://loacalhost:8080/api/v1/ --- base route</li>
   <li>
-     http://loacalhost/api/v1/auth/login --- auth route (use mock data) with return a token </br>
+     http://loacalhost:8080/api/v1/auth/login --- auth route (use mock data) with return a token </br>
 
      ```
         field 
@@ -56,7 +56,7 @@ using JavaScript standard of eslint </br>
 
   </li>
   <li>
-      http://loacalhost/api/v1/patch ----  secured route that require a token(jwt). Take a json object and return a patch with json-patch</br>
+      http://loacalhost:8080/api/v1/patch ----  secured route that require a token(jwt). Take a json object and return a patch with json-patch</br>
       token can be added as query, x-access-token, body</br>
 
       ```
@@ -69,7 +69,7 @@ using JavaScript standard of eslint </br>
 
   </li>
   <li>
-    http://loacalhost/api/v1/thumbnail ----- secured route that an img uri and name and make a thumbnail</br>
+    http://loacalhost:8080/api/v1/thumbnail ----- secured route that an img uri and name and make a thumbnail</br>
     token can be added as query, x-access-token, body </br>
 
     ```
